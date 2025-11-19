@@ -1,0 +1,17 @@
+<div>
+  <h1>Customer Add</h1>
+  <div class="col-lg-6">
+    <span>Enter customer name </span>
+    <input type="text" class="form-control" [(ngModel)]="customerName" />
+
+    <button class="btn btn-primary mt-2" (click)="addCustomer()" [disabled]="!customerName">
+      Add Customer
+    </button>
+    <br />
+    <div class="alert alert-primary text-center" #divmessage></div>
+  </div>
+</div>
+
+<!-- child selector here to use customer list component  i.e app-customer-list -->
+
+<app-customer-list [customers]="customers" (selectedCustomer)="onSelectCustomer($event)"></app-customer-list>

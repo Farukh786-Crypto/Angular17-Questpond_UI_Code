@@ -1,0 +1,17 @@
+<p>parent works!</p>
+
+<div class="container">
+    <div class="form-group">
+        <label>CustomerId</label>
+        <input type="number" class="form-control" name="customerId" [(ngModel)]="customer.customerId" />
+    </div>
+    <div class="form-group">
+        <label>CustomerName</label>
+        <input type="text" class="form-control" name="customerName" [(ngModel)]="customer.customerName" />
+    </div>
+    <button class="btn btn-primary mt-2" (click)="add()">Add</button>
+</div>
+
+
+<!-- <app-child [customers]="customers" [custName]="customer.customerName"></app-child> -->
+<app-child [customers]="customers"></app-child>

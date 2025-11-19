@@ -1,0 +1,17 @@
+.r1 {
+  background-color: red;
+}
+
+.g1 {
+  background-color: green;
+  font-weight: bold;
+}
+
+.b1 {
+  background-color: blue;
+}
+
+.highlight {
+  background-color: gold;
+  border-radius: 10px;
+}

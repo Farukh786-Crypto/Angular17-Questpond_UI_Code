@@ -1,0 +1,30 @@
+<div class="container">
+  <p>pipe-sample works!</p>
+
+  <p>Product Id:{{ product.productId | mypipe : "E" : "-" }}</p>
+  <p>Product Code {{ product.productCode }}</p>
+  <p>Product Name {{ product.productName | uppercase }}</p>
+  <p>Product Price {{ product.price | currency : "INR" }}</p>
+
+  <p>{{ date | date : "dd-MM-yyyy" }}</p>
+
+  {{ product | json }}
+
+  <input type="button" class="btn btn-dark" value="Redirect to Directive Page" (click)="onRedirect()" />
+</div>
+<div class="col-lg-6">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Active</a>
+    </li>
+    <!-- doing child component routing here -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home/pipesample/personal" routerLinkActive="active">Personal</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home/pipesample/education" routerLinkActive="active">Educational</a>
+    </li>
+  </ul>
+</div>
+<!-- add placeholder for routing views -->
+<router-outlet></router-outlet>

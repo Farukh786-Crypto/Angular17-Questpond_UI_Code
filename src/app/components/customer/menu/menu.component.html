@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Demo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" *ngIf="currentUser!=undefined">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home/databinding" routerLinkActive="active" routerLinkActive="highlight">Data
+          Binding <span class="sr-only"></span></a>
+      </li>
+      <!-- pass routing parameter here :id -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home/dir/:id" routerLinkActive="active" routerLinkActive="highlight">Directives
+          Sample</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home/pipesample" routerLinkActive="active" routerLinkActive="highlight">Pipe
+          Sample</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home/templateForm" routerLinkActive="active"
+          routerLinkActive="highlight">Template
+          Form</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home/modelForm" routerLinkActive="active" routerLinkActive="highlight">Model
+          Driven
+          Form</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home/datasharing" routerLinkActive="active" routerLinkActive="highlight">Data
+          sharing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home/observable" routerLinkActive="highlight">Observable</a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/home/productlist" routerLinkActive="active"
+          routerLinkActive="highlight">Product
+          List</a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/home/hooks" routerLinkActive="active" routerLinkActive="highlight">Lifecycle
+          Hooks</a>
+      </li>
+      <li>
+        Welcome {{currentUser?.fullName}}
+        <a class="nav-link" routerLink="/login" routerLinkActive="active" routerLinkActive="highlight"
+          (click)="logout()">Logout
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto" *ngIf="currentUser==undefined">
+      <div>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active" routerLinkActive="highlight">
+            Login</a>
+        </li>
+      </div>
+
+    </ul>
+  </div>
+</nav>

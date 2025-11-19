@@ -1,0 +1,18 @@
+<p>databinding works!</p>
+<h2>Interpolation</h2>
+<span>Product Name :{{ productName }}</span>
+
+<h2>Property Binding</h2>
+<span>Product Name :</span>
+<input type="text" [value]="productName" />
+
+<h2>Event Binding</h2>
+<input type="button" (click)="onClickMe()" value="Click Me!" />
+
+<h2>Two way data Binding</h2>
+<input type="text" [(ngModel)]="productcode" />
+<span> Product code {{ productcode }} </span>
+
+<hr>
+
+<!-- <button type="submit" class="btn btn-dark" (click)="Login()">{{btnText}}</button> -->

@@ -1,0 +1,44 @@
+<div class="container">
+  <table class="table table-bordered table-striped table-hover text-center">
+    <tr>
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- style represent ngStyle here in this example we are using style.color -->
+        <!-- Use TrackBy here to optimize ngFor rendering -->
+        <tr *ngFor="let product of products; trackBy: trackByProduct" [style.color]="selectedColor">
+          <!-- 
+           [class.r1]="product.price > 28"
+          [class.g1]="product.price <= 20"
+          [class.b1]="product.price >= 30"
+          no need to used ngClass now we use class -->
+
+          <td>{{ product.id }}</td>
+          <td>{{ product.code }}</td>
+          <td>
+            {{ product.name }}
+            <input type="button" class="btn btn-sm btn-outline-danger ms-2" value="Like" [appFavs]="selectedColor" />
+
+            <!-- apply custom directives here  i.e appFavs -->
+          </td>
+          <td>
+            {{ product.price }}
+            <span *ngIf="product.price > 30" class="badge bg-danger ms-2">
+              expensive
+            </span>
+            <span *ngIf="product.price <= 20" class="badge bg-success ms-2">
+              cheap
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </tr>
+  </table>
+  <input type="button" class="btn btn-primary" (click)="addNewProductButton()" value="add Product" />
+</div>

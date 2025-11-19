@@ -1,0 +1,386 @@
+---Questpond---
+LAb requirement
+- NodeJs 
+- Visual Studio Code, VIM, Webstorm
+- Web API 
+
+
+---Day 1---
+Javascript is a dynamic scripting language
+
+var d = 10;
+d = 'pradeep';
+d = true;
+
+function add(x,y)
+{
+	return x + y;
+}
+
+add(10,10);//20
+add(10); //NaN
+add();
+
+var h;
+console.log(h);//undefined
+//
+//
+=10;
+
+Hoisting- Scan your code & move the declaration on the top
+
+var x = 10;
+var y = 'pradeep';
+var z  = y - x + 10 ; pradeep1010
+
+Typescript
+- Its a programming language developed by Microsoft
+- Superset of Javascript
+- Datatype, OOPS
+- Compiled to JS according to ES(Ecmascript) std
+
+HTML - W3C
+JS - Ecmascript
+
+Ecmascript
+- rules and guidelines for a scripting language
+
+IE11- ES5
+Chrome,Edge,Mozilla - ES6+  let,class
+
+NodeJs
+- Cross platform
+- Javascript runtime enivronment
+- Free & open source
+- Create servers using nodejs
+- Tools called as NPM (Node Package Manager)
+
+Node Package Manager
+- command that allows you to download the packages from repository 
+- It resolved inter-dependencies 
+
+Install Typescript
+> npm install typescript
+> tsc <filename>.ts
+> node <filename>js
+
+
+---Day 2---
+for-of  --similar to foreach  loop
+for-in  -- similar to for loop
+
+
+Module
+- using "export" for exposing the class/interface/function/const
+- using "import" for consuming
+
+Angular 
+- Databinding framework
+- Component based architecture
+- Used for creating SPA (Single Page Application)
+- Write Declarative statement rather than imperative statements
+
+Adding configuration file in typescript
+> tsc -init
+
+Next Session
+- Angular project creation & undertstanding structure
+- Databinding
+- Directives
+- Pipes
+
+---Day 3---
+
+Angular CLI (Command line interface)
+- Create, Build, compile, serve the angular app
+- Create any files components, directive, pipes, service, class
+>npm install @angular/cli@17.3.8
+>ng new <projectName> --skip-install
+>cd <projectName>
+>npm install
+
+
+Decorators - Attribute for class
+Class decorators
+@Component
+@Directive
+@Pipe
+@Injectable
+
+Method Decorator
+@HostListener()
+
+Field Decorator
+@Input()
+@Output()
+@ViewChild()
+
+
+ng serve - compile build, bundling, spin up live development serve
+
+Component 
+- Class + Template + Metadata
+- Component can be exposed like a tag
+-Creating a new component
+ > ng g c <componentName>
+ 
+Databinding
+- Its a mechanism to bind data values into html DOM & turn user activities into action
+- Types of binding
+  Interpolation		Component => DOM
+  Property Binding 	Component => DOM
+  Event Binding 	DOM => Component
+  Two way Binding	Component <=> DOM    Importing "FormsModule"
+  
+Directives
+- Extending the power of existing html element
+- It changes the appearance & behaviouur of html element
+- Types of directive
+  Component - Its a directive with a template(html)
+  Structural directive - Altering, Adding or removing the DOM element  *ngIf, *ngFor
+  Attribute - Change the appearance of DOM element   ngClass, ngSyle, ngModel
+  Custom directive
+  >ng g d <directiveName>   ElementRef
+  
+  
+  
+Next Session
+-Custom directive
+-Pipes
+-Custom pipe
+-Routing
+
+---Day 4---
+Creating project with modules
+>ng new <projectName> --no-standalone
+
+NgModule
+- Container that contains multiple components, directive, pipe, service, other modules
+
+Installing any packages in project
+>npm install <packageName> --save
+
+Pipes
+-Transform bound values before displaying
+-number, uppercase, lowercase, date, currency, json
+Creating custom pipes
+>ng g p <pipeName>
+
+Routing
+-Loading a webpage based on requested url
+-Navigating from one page to other
+
+Steps to implement routing in angular
+- Import module "RouterModule"
+- Define list of routes
+   const routes: Routes = [
+  {path:'databinding', component: DatabindingComponent},
+  }
+- Map the RouterModule with routes
+	RouterModule.forRoot(routes)
+- Add place holder in app.component.html
+  <router-outlet></router-outlet>
+- Add navlink
+    <a class="nav-link" routerLinkActive="highlight" [routerLink]="['databinding']">DataBinding</a>
+
+Next Week
+-Routing - Reading route data, querystring, navigating	
+-Data Sharing
+-Angular Forms
+-unknown & any
+
+---Day 5---
+
+Activatedroute class
+- To read route parameter & querystring 
+	this.activatedRoute.params.subscribe(data=> {
+        this.Id = data['name'];
+    });
+
+
+Router class
+- To navigate from one component to other
+	 this.router.navigate(['dir', this.product.productId], {
+      queryParams: {
+        city: "mumbai", country: 'india'
+      }
+    });
+	
+
+Data Sharing
+-@Input() - Used to pass data from parent to child component in terms of property (created in child component)
+-@Output()- Used to pass data from child to parent in terms of events (created in child component)
+-@ViewChild() - Creating a ref of child component in parent & taking control of child component (created in Parent)
+
+
+---Day 6--
+Angular Forms
+- Template Driven approach
+- Model Driven approach (Reactive Forms)
+
+Control States
+- pristine => dirty
+- untouched => touched
+- valid <=> invalid
+
+Steps to implement TemplateDriven approach
+- Design a form and add template ref of type "ngForm"
+   <form #frm="ngForm"></form>
+- Add input elements and provide name & ngModel attribute
+  <input type="text" class="form-control" name="productId" [(ngModel)]="product.productId" />
+- Add ngSubmit event and pass frm object 
+  (ngSubmit)="saveProduct(frm)"
+- To add a validation, use html5 attributes
+  required, pattern, email, max, min, maxlength, minlength, phone
+- To show error message
+	 <div *ngIf="frm.controls['productCode']?.errors">
+		<span class="text-danger">Product Code is mandatory</span>
+	</div>
+	
+Steps to implemet Model Driven approach
+- Import a module in app.module.ts "ReactiveFormsModule"
+- Design the model in the ts code, using FormGroup & FormBuilder
+	this.frm = this.fb.group({
+      productId: this.fb.control('')
+	  })
+- Map the fromGroup & formControl in html template
+    <form [formGroup]="frm">
+            <div class="form-group">
+                <label>Product Id</label>
+                <input type="text" class="form-control" formControlName="productId" />
+            </div>
+	</form>
+- Add ngSubmit event & no need to pass formgroup obj
+  (ngSubmit)="saveProduct()"
+- To add valdiation, add in ts code
+  productCode: this.fb.control('',{updateOn:'blur', validators: [Validators.required]})
+- To show error message
+	 <div *ngIf="frm.controls['productCode']?.errors">
+		<span class="text-danger">Product Code is mandatory</span>
+	</div>
+	
+-- Follow thif url
+-- https://medium.com/netanelbasal/three-ways-to-dynamically-alter-your-form-validation-in-angular-e5fd15f1e946
+
+---Day 7---
+
+ReactiveX
+- A library used for async programming with observable streams
+- Rx.Net, RxJava, RxJs
+
+RxJs
+  Observable
+  - Representation of set of values
+  - function that can return stream of values over the time (producer)
+  - Values can range from 0 to infinity
+  - Observable are called lazy, coz if there is no subsvcriber, it will not publish data
+  - This are unicast, Each subscriber gets independent instance of observable
+  Observer
+  - This are the one that listen to your produces data & notify the subscribers
+  - It has 3 callback function, it talks about different notification delivered by observable
+    next() - success info
+	error() - error info
+	complete() - a flag indicating end of stream
+  Operator
+  - Function that takes 1 observable as input & return another observable after manipulation
+  - pipe(op1, op2, op3)
+  
+  Subject
+  - Special type of observable that allows mulitcast to multiple observers (subscribers)
+  - It acts both producer & subscriber
+  - IT can emit always new values to subscriber like event emitter
+  
+  BehaviorSubject
+  - It is similar to regular subject but it can maintain the initial value.
+  - It makes sure that whoever is subscribing to the BehaviourSubject will ateast get last data always available.
+  
+  ReplaySubject
+  - It is similar to regular subject.You can configure to hold x values for a period of time.
+  - It can maitain a buffer size. 
+  - IT makes sure that whoever is subscribing to the ReplaySubject will alteast get those x no of data that is already stored.
+  
+---Day 8---
+
+Services
+- Used to share common functionality across components
+- It create singleton object by default
+ Create => Provide => Inject => Use
+>ng g s <seviceName>
+
+TreeShaking
+Its a comipler option to check if the service is not referenced anywhere then remove the code from bundle
+Size of bundle is reduces & inital load performance is improved
+
+
+Steps to call webapi using Angular
+- Import a module "HttpClientModule" in app.module.ts
+- Create a service and inject a class "HttpClient"
+- Create methods for get,post,put,delete
+	 getProducts() {
+    return this.httpClient.get<Product[]>('https://localhost:7241/api/ProductAPI/getall');
+  }
+- Inject a service in the component/directive/pipe
+- Call the service method & call subscribe method
+  this.productService.getProducts().subscribe({
+      next: (resp) => {
+        this.products = resp;
+      },
+      error:(err) => {
+        console.log(err);
+      }
+    })
+	
+---Day 9---
+Adding environment file
+> ng g environments
+
+Build the angular project, creates a dist folder within the root folder
+>ng build      							==build for production
+>ng build -configuration=development   	== build for development environment
+
+
+Lazy loading
+-Loading the module/component at runtime based on requested url
+-Initial load size of application will be reduced by implmenting lazt loading, which will improve performance.
+>ng g m <module> --route=<pathName> --module=app
+-Lazy loading can be implmented using standalone component as well
+-Command for creating standalone component
+ >ng g c <compName> --standalone
+ 
+  { path: 'userhome', loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) },
+  { path: 'student', loadComponent: () => import('./student/student.component').then(c => c.StudentComponent) },
+
+---Day 10---
+
+Router guards
+- Guards are used to protect route from unauthorized access
+>ng g g <guardName>
+
+Types of guards
+- canActivate - Triggers when route is activated
+- canDeActivate - Tiggers when route is deactivated
+- canActivateChild - Triggers for children route but applied on parent route
+- canMatch - Similar to canActivate, but applied on lazy loading routes. This avoid downloading of js chunk if not having access.
+
+---Day 11---
+
+Life cycle hooks
+- Angular manages creation, rendering, data bound properties etc
+- Angular offers given lifecycle hooks that allow you to execute custom logic
+
+OnChanges - Triggerd when @Input() parameter is changed @Input()
+OnInIt - Tiggered on initialation of component
+DoCheck - Triggered when change detection happens
+AfterContentInit - Triggered when projected content is ready & available for access in code @ContentChild()
+AfterContentChecked - 
+AfterViewInit - @ViewChild()
+AfterViewChecked
+OnDestroy
+
+
+Projection
+- Projecting the content within the start & close tag to render it inside the component template
+ <ng-content></ng-content>
+ @ContentChild()
+ 
+---Day 12---

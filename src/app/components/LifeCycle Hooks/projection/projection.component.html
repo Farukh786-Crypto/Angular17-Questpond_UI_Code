@@ -1,0 +1,15 @@
+<div class="alert alert-warning">
+    <ng-content select="h2"></ng-content>
+</div>
+
+<div class="alert alert-dark">
+    <ng-content select=".cls"></ng-content>
+</div>
+
+<div class="alert alert-primary">
+    <ng-content select="footer"></ng-content>
+</div>
+
+<footer>
+    Today : {{currentDate | date:'dd MMM yyyy'}}
+</footer>

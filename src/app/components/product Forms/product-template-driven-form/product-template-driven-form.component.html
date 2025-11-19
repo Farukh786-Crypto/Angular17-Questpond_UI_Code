@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>Product Template Driven Form</h2>
+  <p>
+    This is a simple template driven form to capture product details. The form
+    is built using Angular's ngModel for two-way data binding.
+  </p>
+  <hr />
+  <div class="alert alert-info">
+    <strong>Note:</strong> This form uses Angular's template-driven approach.
+    Ensure you have imported the FormsModule in your module.
+  </div>
+  <hr />
+  <button class="btn btn-primary" (click)="newProduct()">Add New Product</button>
+  <div class="row">
+    <div class="col-lg-6">
+      <form #frm="ngForm" (ngSubmit)="onSubmit(frm)">
+        <div class="form-group">
+          <label>Product Id</label>
+          <input type="number" class="form-control" name="productId" [(ngModel)]="product.productId"
+            [disabled]="isEditMode" required />
+          <div *ngIf="onFormControl(frm, 'productId')" class="text-danger">
+            Product Id is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Product Code</label>
+          <input type="text" class="form-control" name="productCode" [(ngModel)]="product.productCode" required />
+          <div *ngIf="onFormControl(frm, 'productCode')" class="text-danger">
+            Product Code is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" class="form-control" name="productName" [(ngModel)]="product.productName" required
+            pattern="^[a-zA-Z0-9 ]+$" />
+          <div *ngIf="onFormControl(frm, 'productName')" class="text-danger">
+            <span *ngIf="hasError(frm, 'productName', 'required')">
+              Product Name is required.
+            </span>
+            <span *ngIf="hasError(frm, 'productName', 'pattern')">
+              Only alphanumeric characters and spaces are allowed.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Product Price</label>
+          <input type="text" class="form-control" name="price" [(ngModel)]="product.price" required />
+          <div *ngIf="onFormControl(frm, 'productPrice')" class="text-danger">
+            Product Price is required.
+          </div>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
