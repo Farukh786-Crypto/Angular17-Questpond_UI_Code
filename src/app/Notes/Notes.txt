@@ -813,7 +813,7 @@ while subscribe(takeuntildestry()) as alternative
 
 11> avoid to use any datatype
 
-12> always use track or trackby when use @for or *ngFor()
+12> always use track or trackby when use @for or *ngFor() so whenever dom rerun searchinf faster and only update dom that chages not all code
 
 13> Never hardcode API URLs in your services. Always use environment.ts and environment.prod.ts.
  This allows you to swap configurations automatically during ng build.
