@@ -848,7 +848,8 @@ This is what you remembered. You define the "blueprint" once and stamp it out mu
 
 17 > you want to pass data from one component to another and store it then use localstorage or sessionstorage and try
    to make empty after use also or make empty before set()
-    
+
+18> in html try to use <ng-container> instead use div tage so in DOM performance
 
 
 
