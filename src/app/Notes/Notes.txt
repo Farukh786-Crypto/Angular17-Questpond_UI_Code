@@ -506,6 +506,58 @@ RxJs
   - It can maitain a buffer size. 
   - IT makes sure that whoever is subscribing to the ReplaySubject will alteast get those x no of data that is already stored.
   
+1. Subject (The "Live Radio")
+A standard Subject is multicast, but it has no memory. If you tune into a radio station late, you don't hear the songs that played before you joined; you only hear what is playing right now.
+
+Theory: It does not store values. Subscribers only receive data emitted after they subscribe.
+
+Best for: Event bus logic, like clicking a "Global Save" button.
+
+TypeScript
+const subject = new Subject<number>();
+
+subject.next(1); // Lost (no one is listening)
+
+subject.subscribe(val => console.log('Sub A:', val));
+
+subject.next(2); // Sub A gets 2
+2. BehaviorSubject (The "Last Played")
+This is the most common Subject in Angular. It always has a "current value." When you subscribe, it immediately gives you the latest value it emitted.
+
+Theory: It requires an initial value. It stores the latest value and emits it to new subscribers immediately upon subscription.
+
+Best for: Storing "Current User" info or "Form State" in a service.
+
+TypeScript
+// Requires an initial value (0)
+const bSubject = new BehaviorSubject<number>(0); 
+
+bSubject.subscribe(val => console.log('Sub A:', val)); // Immediately gets 0
+
+bSubject.next(10); // Sub A gets 10
+
+bSubject.subscribe(val => console.log('Sub B:', val)); // Immediately gets 10
+3. ReplaySubject (The "DVR / Catch-up TV")
+This Subject acts like a recorder. It remembers a specific number of previous values and "replays" them for any new subscriber.
+
+Theory: It does not need an initial value. You define a buffer size (how many items to remember).
+
+Best for: Caching a list of data from an API so that multiple components can get the same history without re-calling the server.
+
+TypeScript
+// Buffer size of 2 (Remember last 2 values)
+const rSubject = new ReplaySubject<number>(2);
+
+rSubject.next(1);
+rSubject.next(2);
+rSubject.next(3);
+
+// Subscriber joins late
+rSubject.subscribe(val => console.log('Sub A:', val)); 
+// Output: 2, 3 (It missed 1, but got the last 2)
+
+
+
 ---Day 8---
 
 Services
