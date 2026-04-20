@@ -125,10 +125,42 @@ Method Decorator
 Field Decorator
 @Input() - pass data from parent comp to child comp
 @Output() - pass data from child comp to parent comp
-@ViewChild() - access child component or element using this
+@ViewChild() - access child component or element using this or acccess HTML DOM
 
 ---------------------------------------------------------------
-Example :
+Example 1 :
+Here is a common use case where we change the background color of a directive when the mouse enters or leaves the host element:
+
+TypeScript
+import { Directive, HostListener, HostBinding } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+
+  @HostBinding('style.backgroundColor') backgroundColor: string = 'transparent';
+
+  // Listen for the 'mouseenter' event on the host element
+  @HostListener('mouseenter') onMouseEnter() {
+    this.backgroundColor = 'yellow';
+  }
+
+  // Listen for the 'mouseleave' event on the host element
+  @HostListener('mouseleave') onMouseLeave() {
+    this.backgroundColor = 'transparent';
+  }
+}
+
+Handling Global events
+------------------------
+// Detect window resize
+@HostListener('window:resize', ['$event'])
+onResize(event: any) {
+  console.log('New window width:', event.target.innerWidth);
+}
+
+Example 2:
 
  Note : you can access element in ngAfterViewInit()
 html :
@@ -189,7 +221,7 @@ changeColor() {
 ---------------------------------------------------------------
 
 
-ng serve - compile build, bundling, spin up live development serve
+ng serve - compile build, bundling on memory, spin up live development serve
 
 ng s -o = after compilation (compilation) open browser running out angular project on default port 4200
 ng s -o --port 4500 = if you want to run our application on 4500 port then this command is used
@@ -813,7 +845,7 @@ while subscribe(takeuntildestry()) as alternative
 
 11> avoid to use any datatype
 
-12> always use track or trackby when use @for or *ngFor() so whenever dom rerun searchinf faster and only update dom that chages not all code
+12> always use track or trackby when use @for or *ngFor()
 
 13> Never hardcode API URLs in your services. Always use environment.ts and environment.prod.ts.
  This allows you to swap configurations automatically during ng build.
@@ -848,12 +880,7 @@ This is what you remembered. You define the "blueprint" once and stamp it out mu
 
 17 > you want to pass data from one component to another and store it then use localstorage or sessionstorage and try
    to make empty after use also or make empty before set()
-
-18> in html try to use <ng-container> instead use div tage so in DOM performance
-
-
-
-
+    
 
 
 
