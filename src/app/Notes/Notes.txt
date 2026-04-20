@@ -938,6 +938,81 @@ This is what you remembered. You define the "blueprint" once and stamp it out mu
 
 
 
+	1. Array Methods Cheat Sheet (Data Manipulation)
+
+	Method				Theory							Coding Example						Expected Result (The Output)
+
+	map()			Creates a new array by 				[1, 2, 3].map(x => x * 2)						[2, 4, 6]
+					transforming every element.
+	
+
+	filter()   		Returns all items that pass 		[10, 20, 30].filter(x => x > 15)				[20, 30]
+					a specific condition.
+
+	find()			Returns the first matching 			emps.find(e => e.id === 1)					{id: 1, name: 'John'}
+					element (or undefined).
+
+	findIndex()		Returns the index of the first		['a', 'b', 'c'].findIndex(x => x === 'b')		1
+					 match (or -1).
+
+	some()			Returns true if at least one		[1, 2, 3].some(x => x > 2)						true
+					 item matches.
+
+
+	every()		Returns true only if all items match.	[1, 2, 3].every(x => x > 0)						true
+
+
+	reduce()	Condenses array into a single 			[1, 2, 3].reduce((acc, val) => acc + val, 0)	6
+				value (like a sum).
+
+	includes() 	Checks if a primitive value exists 		['Red', 'Blue'].includes('Red')					true
+				in the array.
+
+	slice()		Returns a copy of a portion 			['a', 'b', 'c'].slice(0, 2)						['a', 'b']
+				(Original safe).
+
+	splice()	Removes/Adds items (Modifies original).	arr.splice(0, 1) // Remove 1 item at index 0	[The removed item]
+
+
+
+
+	2. String Methods Cheat Sheet (Text Formatting)
+
+
+	split()				Converts a string into an Array.	"A,B,C".split(",")				["A", "B", "C"]
+
+	trim()				Removes spaces from start and end.	" Hello ".trim()				"Hello"
+
+	toLowerCase()      Makes all letters small 				"ADMIN".toLowerCase()			"admin"
+						(good for comparison).
+
+	includes()			Checks if a substring exists 		"Angular".includes("ng")		true
+						inside a string.
+
+	replace()			Replaces the first match with 		"Hi John".replace("John", "Doe")  "Hi Doe"
+						new text.
+
+	substring()			Extracts text between two index 	"DOTNet".substring(0, 3)			"DOT"
+						positions.
+
+	startsWith()		Checks the beginning of the string.	"EMP101".startsWith("EMP")			true
+
+
+
+
+	Question 1 : How would you get the names of all employees in the 'Sales' department?
+	const result = 	employees
+  					.filter(emp => emp.dept === 'Sales') // Step 1: Selection
+  					.map(emp => emp.name);               // Step 2: Transformation
+
+	Output = ["John", "Sarah", "Mike"]
+
+
+find vs filter: find returns the object itself; filter returns an array containing the object.
+
+some vs includes: includes only works for simple values (like 5 or "Hi"); some works for complex objects (like emp.id === 5).
+
+map vs forEach: map returns a new array (Functional); forEach returns nothing (used for loops/logs).
 
 
 
