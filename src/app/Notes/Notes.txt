@@ -643,7 +643,18 @@ Projection
  @ContentChild()
  
 ---Day 12---
+How to create Angular library when we have multiple project and we want to apss same code to each project then angular librry is used
+step 1: ng new monorepo-angular-19 --create-application=false
+What you need is an Angular Workspace, not a single Angular project anymore. Later in the workspace, you will create a 2 things, library and project.
 
+step 2: create angular library
+ng generate library example-library
+
+step 3> create Angular Applications
+ng generate application example-project
+
+folow this link 
+https://medium.com/@malvinpatrickk/angular-monorepo-library-and-use-it-locally-455bb8dc733a
 
 ------------------------
 
